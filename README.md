@@ -4,21 +4,10 @@ The 12 factor methodology is the result of observations of applications deployed
 
 # Organization of this lab
 
-In this lab, we will start by building a simple Node.js application as an HTTP Rest API exposing CRUD (Create / Read / Update / Delete) verbs on a *message* model.
-
-HTTP verb | URI | Action
-----------| --- | ------
-GET | /message | list all messages
-GET | /message/ID | get message with ID
-POST | /message | create a message user
-PUT | /message/ID | modify message with ID
-DELETE | /message/ID | delete message with ID
-
-We will then follow each one of the 12 factor and see how this can leverage our application. At the same time, we will see that Docker is a really great fit for several of those factors.
+In this lab, we will use the voting application to follow each one of the 12 factors and see how this can leverage our application. At the same time, we will see that Docker is a really great fit for several of those factors.
 
 # Let's get started !
 
-[Build the application](00_application.md)
 
 [1 - Codebase](01_codebase.md)
 
