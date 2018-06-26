@@ -11,8 +11,7 @@ This ensure the application is loosely coupled with the services so it can easil
 
 ## What does that mean for our application ?
 
-At this point, the only external service the application is using is MongoDB database. The loose coupling is already done by the MONGO_URL used to pass the connection string.
+The voting application is a bundle of services. Each microservice plays it's part to deploy the application. In addition to the services, the application uses two databasees, redis as a queue and postgresql for storage.
 
-If something wrong happens with our instance of MongoDB (assuming a single instance is used, which is generally a bad idea...), we can easily switch to a new instance, providing a new MONGO_URL environment variable and restarting the application.
 
-[Previous](03_configuration.md) - [Next](05_build_release_run.md)
+[Previous](03_configuration.md) - [Next](05_build_ship_run.md)

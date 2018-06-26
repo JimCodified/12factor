@@ -1,14 +1,8 @@
-# 12 Factor Application
+# 12 Factor Application Using Docker
 
-Today, a lot of applications are services deployed in the cloud, on infrastructure of cloud providers such as Amazon AWS, Google Compute Engine, DigitalOcean, Rackspace, OVH, ...
+The 12 factor methodology is the result of observations of applications deployed as services in the cloud. As the name states, it presents 12 principles that will help application to be cloud ready, horizontally scalable, and portable.
 
-Heroku is PaaS (Platform as a Service) that relies on Amazon AWS and which makes the deployment of applications as easy as `git push heroku master` (ran from the root of your application).
-
-With the huge number of applications deployed on Heroku, engineers of the company acquired a great knowledge of what should be done to get cloud native application.
-
-12 factor methodology is the result of their observations. As the name states, it presents 12 principles that will help application to be cloud ready, horizontally scalable, and portable.
-
-# Organisation of this lab
+# Organization of this lab
 
 In this lab, we will start by building a simple Node.js application as an HTTP Rest API exposing CRUD (Create / Read / Update / Delete) verbs on a *message* model.
 
@@ -34,7 +28,7 @@ We will then follow each one of the 12 factor and see how this can leverage our 
 
 [4 - External services](04_external_services.md)
 
-[5 - Build / Release / Run](05_build_release_run.md)
+[5 - Build / Ship / Run](05_build_ship_run.md)
 
 [6 - Processes](06_processes.md)
 

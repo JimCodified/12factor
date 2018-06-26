@@ -5,14 +5,14 @@ Horizontal scalability with the processes model.
 The app can be seen as a set of processes of different types
 * web server
 * worker
-* cron
+* message queue
 
 Each process needs to be able to scale horizontally, it can have its own internal multiplexing.
 
 ## What does that mean for our application ?
 
-The messageApp only have one type of process (http server), it's doing the multiplexing using Node.js http server.
+The  voting app has several processes that include a web UI for voting that writes to the message queue in Redis, a worker that reads the data from Redis and writes to PostgreSQL, and client that displays the results.
 
-This process can be easily scalable (stateless process).
+This process can be easily scalable because they are stateless processes.
 
 [Previous](07_port_binding.md) - [Next](09_disposability.md)

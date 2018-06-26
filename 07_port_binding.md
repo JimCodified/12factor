@@ -8,41 +8,70 @@ The host has the responsibility to route the request to the correct application 
 
 ## What does that mean for our application ?
 
-Docker already handles that for us, as we can see in the docker-compose file. The **app** container exposes port 80 internally and the host maps it against its port 8000.
+Docker already handles that for us, as we can see in the docker-compose file. Each  container exposes a port and in the case of services (vote and result) that communicate outside of the cluster, the host maps port 80 against their respective ports.
 
-```
-version: '3'
+```yaml
+version: "3"
+
 services:
-  mongo:
-    image: mongo:3.2
+  vote:
+    build: ./vote
+    command: python app.py
     volumes:
-      - mongo-data:/data/db
-    expose:
-      - "27017"
-  kv:
-    image: redis:alpine
-    volumes:
-      - redis-data:/data
-    expose:
-      - "6379"
-  app:
-    image: message-app:v0.2 # New version taking into account REDIS_URL
+     - ./vote:/app
     ports:
-      - "8000:80"     // app service is exposed on the port 8000 of the host
-    links:
-      - mongo
-    depends_on:
-      - mongo
+      - "5000:80"
+    networks:
+      - front-tier
+      - back-tier
+
+  result:
+    build: ./result
+    command: nodemon server.js
     environment:
-      - MONGO_URL=mongodb://mongo/messageApp
-      - REDIS_URL=redis
+      - DB_HOST=postgres://postgres@db/postgres
+      - PORT=4000
+    volumes:
+      - ./result:/app
+    ports:
+      - "5001:80"
+      - "5858:5858"
+    networks:
+      - front-tier
+      - back-tier
+
+  worker:
+    build:
+      context: ./worker
+      dockerfile: Dockerfile.j
+    networks:
+      - back-tier
+
+  redis:
+    image: redis:alpine
+    container_name: redis
+    ports: ["6379"]
+    networks:
+      - back-tier
+
+  db:
+    image: postgres:9.4
+    container_name: db
+    volumes:
+      - "db-data:/var/lib/postgresql/data"
+    networks:
+      - back-tier
+
 volumes:
-  mongo-data:
-  redis-data:
+  db-data:
+
+networks:
+  front-tier:
+  back-tier:
 ```
 
-If several instances of the app services needs to be deployed, the configuration above cannot be used as a given port on the host cannot map several ports in the containers.
+If several instances of the app services need to be deployed, the configuration above cannot be used. A given port on the host cannot map several ports in the containers.
 
-In this case, we can use a load balancer to which the host will map a port. The load balancer will then be in charge to balance the traffic on the different instances of the services. 
+In this case, we can deploy the application as s Docker stack file to scale the number of instances for each service. Docker EE will then orchestrate the traffic on the different instances of the services.
 
 [Previous](06_processes.md) - [Next](08_concurrency.md)

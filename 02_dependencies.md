@@ -4,62 +4,131 @@ Application's dependencies must be declared and isolated
 
 ## What does that mean for our application ?
 
-Declaration are done in package.json file.
+The example voting application is a polyglot application that uses java, python and node,js to implement the services that make up the application. Declaration are done in pom.xml, requirements.txt and package.json file.
 
-Let's add sails-mongo (mongodb driver) as we'll need it very quicky
+Let's look at the dependencies in each service.
 
-`npm install sails-mongo --save`
+The worker service uses [pom.xml](example-voting-app/worker/pom.xml) declaring dependencies and plugins needed to build the application.
 
-The package.json file should look like the following:
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
 
+  <groupId>worker</groupId>
+  <artifactId>worker</artifactId>
+  <version>1.0-SNAPSHOT</version>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.json</groupId>
+      <artifactId>json</artifactId>
+      <version>20140107</version>
+    </dependency>
+
+    <dependency>
+        <groupId>redis.clients</groupId>
+        <artifactId>jedis</artifactId>
+        <version>2.7.2</version>
+        <type>jar</type>
+        <scope>compile</scope>
+    </dependency>
+
+    <dependency>
+        <groupId>org.postgresql</groupId>
+        <artifactId>postgresql</artifactId>
+        <version>9.4-1200-jdbc41</version>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+        <version>2.4</version>
+        <configuration>
+          <finalName>worker</finalName>
+          <archive>
+            <manifest>
+              <addClasspath>true</addClasspath>
+              <mainClass>worker.Worker</mainClass>
+              <classpathPrefix>dependency-jars/</classpathPrefix>
+            </manifest>
+          </archive>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.1</version>
+        <configuration>
+          <source>1.7</source>
+          <target>1.7</target>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-assembly-plugin</artifactId>
+        <executions>
+          <execution>
+            <goals>
+              <goal>attached</goal>
+            </goals>
+            <phase>package</phase>
+            <configuration>
+              <finalName>worker</finalName>
+              <descriptorRefs>
+                <descriptorRef>jar-with-dependencies</descriptorRef>
+              </descriptorRefs>
+              <archive>
+                <manifest>
+                  <mainClass>worker.Worker</mainClass>
+                </manifest>
+              </archive>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+</project
 ```
+
+The vote service is written in python and dependencies are declared in [requirements.txt](example-voting-app/vote/requirements.txt)
+
+```txt
+Flask
+Redis
+gunicorn
+```
+
+The results service is written in node.js, requirements are declared in [package.json](example-voting-app/result/package.json)
+
+```json
 {
-  "name": "messageApp",
-  "private": true,
-  "version": "0.0.0",
-  "description": "a Sails application",
-  "keywords": [],
-  "dependencies": {
-    "ejs": "2.3.4",
-    "grunt": "0.4.5",
-    "grunt-contrib-clean": "0.6.0",
-    "grunt-contrib-coffee": "0.13.0",
-    "grunt-contrib-concat": "0.5.1",
-    "grunt-contrib-copy": "0.5.0",
-    "grunt-contrib-cssmin": "0.9.0",
-    "grunt-contrib-jst": "0.6.0",
-    "grunt-contrib-less": "1.1.0",
-    "grunt-contrib-uglify": "0.7.0",
-    "grunt-contrib-watch": "0.5.3",
-    "grunt-sails-linker": "~0.10.1",
-    "grunt-sync": "0.2.4",
-    "include-all": "~0.1.6",
-    "rc": "1.0.1",
-    "sails": "~0.12.3",
-    "sails-disk": "~0.10.9",
-    "sails-mongo": "^0.12.0"  // Newly added dependency
-  },
+  "name": "result",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
   "scripts": {
-    "debug": "node debug app.js",
-    "start": "node app.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "main": "app.js",
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/GITUSER/messageApp.git"
-  },
-  "author": "AUTHOR",
-  "license": ""
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.14.1",
+    "cookie-parser": "^1.4.0",
+    "express": "^4.13.3",
+    "method-override": "^2.3.5",
+    "async": "^1.5.0",
+    "pg": "^4.4.3",
+    "socket.io": "^1.3.7"
+  }
 }
 ```
 
-Dependencies are isolated within _node-modules_ folder where all the [npm](https://npmjs.org) libraries are compiled and installed.
-
-```
-$ ls node_modules/
-ejs                  grunt-contrib-coffee grunt-contrib-cssmin grunt-contrib-uglify grunt-sync           sails
-grunt                grunt-contrib-concat grunt-contrib-jst    grunt-contrib-watch  include-all          sails-disk
-grunt-contrib-clean  grunt-contrib-copy   grunt-contrib-less   grunt-sails-linker   rc                   sails-mongo
-```
+As you can see, each application uses a language specific format but they all perform the same function.
 
 [Previous](01_codebase.md) - [Next](03_configuration.md)
