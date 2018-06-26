@@ -1,4 +1,4 @@
-# 12 Factor Application Using Docker
+# 12 Factor Application Using Docker 
 
 The 12 factor methodology is the result of observations of applications deployed as services in the cloud. As the name states, it presents 12 principles that will help application to be cloud ready, horizontally scalable, and portable.
 
