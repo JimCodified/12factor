@@ -4,7 +4,7 @@ Application's dependencies must be declared and isolated
 
 ## What does that mean for our application ?
 
-The example voting application is a polyglot application that uses java, python and node,js to implement the services that make up the application. Declaration are done in pom.xml, requirements.txt and package.json file.
+The example voting application is a polyglot application that uses Java, python and node.js to implement the services that make up the application. Declarations are done in pom.xml, requirements.txt and package.json file.
 
 Let's look at the dependencies in each service.
 
@@ -98,7 +98,7 @@ The worker service uses [pom.xml](example-voting-app/worker/pom.xml) declaring d
 
 The vote service is written in python and dependencies are declared in [requirements.txt](example-voting-app/vote/requirements.txt)
 
-```txt
+```text
 Flask
 Redis
 gunicorn

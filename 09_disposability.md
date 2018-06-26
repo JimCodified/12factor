@@ -13,4 +13,6 @@ Each process of an application must be disposable.
 
 Our application exposes HTTP endPoints that are easy and quick to handle. Having multiple clients writing to the PostgreSQL database can cause a bottleneck where votes can be lost due to a long running process that could be interrupted . The voting application uses a message queue to store votes from the voting clients before writing them into the database where the results can be tallied. Each time a vote is entered, the worker pushes the last vote on the list until al votes are entered.
 
+If the application is run as a Docker stack in Swarm mode, Docker will orchestrate the containers, replacing containers that are shutdown as declared in the stack file.
+
 [Previous](08_concurrency.md) - [Next](10_dev_prod_parity.md)

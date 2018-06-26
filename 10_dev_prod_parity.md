@@ -8,10 +8,9 @@ A lot of external services are available on Docker Hub and can be used in an exi
 
 This factor shows an orientation toward continuous deployment, where development can go from dev to production in a very short time frame, thus avoiding the big bang effect at each release.
 
-
 ## What does that mean for our application ?
 
-The docker-compose file we built so far can be ran on the local machine or on any Docker Host. So Docker really shines at this level as it handles everything for us.
+The docker-compose file we built so far can be ran on your local machine or on any Docker Host such as Docker Enterprise Edition. Docker really shines at this level as it handles everything for us.
 
 The exact same application can run on each environment.
 

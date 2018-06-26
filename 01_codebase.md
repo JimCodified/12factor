@@ -15,6 +15,6 @@ We will use Git versioning system (could have chosen subversion, ...) to handle 
 
 * Clone the repo on [Github](https://github.com/dockersamples/example-voting-app.git)
 
-The update we've done is not linked with Docker, but we'll see in a next chapter that this will greatly help the integration of several components of the Docker ecosystem.
+Any updates we've done are not linked with Docker, but we'll see in a next chapter that this will greatly help the integration of several components of the Docker ecosystem.
 
 [Previous](00_application.md) - [Next](02_dependencies.md)

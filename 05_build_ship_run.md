@@ -1,6 +1,6 @@
 # 5 - Build / Ship / Run
 
-Build / Release and Run phases must be kept separated
+Build / Ship and Run phases must be kept separated
 
 ![Build/Release/Run](images/docker-build-ship-run-workflowa.png)
 
@@ -8,7 +8,7 @@ A release is deployed on the execution environment and must be immutable.
 
 ## What does that mean for our application ?
 
-We'll use Docker in the whole development pipeline. We will start by adding a Dockerfile that will define the build phase for each service (during which the dependencies are compiled). As an example, the Dockerfile for the vote service
+We'll use Docker in the whole development pipeline. We will start by adding a Dockerfile that will define the build phase for each service (during which the dependencies are compiled). As an example, here is the Dockerfile for the vote service:
 
 
 ```python
@@ -49,7 +49,7 @@ There are several options to inject the configuration in the build, among them
 * create a new image based on the build
 * define a Compose file
 
-We'll go for the second option and define a docker-compose file where the MONGO_URL will be set with the value of the execution environment
+We'll go for the second option and define a docker-compose file where the DB_HOST and PORT will be set with the value of the execution environment
 
 ```yaml
 version: "3"
@@ -111,10 +111,8 @@ networks:
   back-tier:
 ```
 
-This file defines a release as it considers a given build and inject the execution environment.
+The run phase can be done manually with Compose CLI or through an orchestrator such as Docker Swarm or Kubernetes in Docker Enterprise Edition.
 
-The run phase can be done manually with Compose CLI or through an orchestrator (Docker Enterprise Edition).
-
-Compose CLI enables to run the global application as simple as `docker-compose up -d`
+The Compose CLI can run the application using `docker-compose up -d`
 
 [Previous](04_external_services.md) - [Next](06_processes.md)

@@ -1,6 +1,6 @@
 # 7 - Port binding
 
-This factor is related to the exposition of the application to the outside.
+This factor exposes the application outside of the cluster, making it available publicly.
 
 To be compliant with 12 factor, an app must use specialized dependencies (such as http server, ...) and exposes its service through a port.
 
@@ -8,7 +8,7 @@ The host has the responsibility to route the request to the correct application 
 
 ## What does that mean for our application ?
 
-Docker already handles that for us, as we can see in the docker-compose file. Each  container exposes a port and in the case of services (vote and result) that communicate outside of the cluster, the host maps port 80 against their respective ports.
+Docker handles that for us in the docker-compose file. Each  container exposes a port and in the case of services (vote and result) that communicate outside of the cluster, the host maps port 80 to other external ports because two services can not share the same port.
 
 ```yaml
 version: "3"
@@ -69,9 +69,5 @@ networks:
   front-tier:
   back-tier:
 ```
-
-If several instances of the app services need to be deployed, the configuration above cannot be used. A given port on the host cannot map several ports in the containers.
-
-In this case, we can deploy the application as s Docker stack file to scale the number of instances for each service. Docker EE will then orchestrate the traffic on the different instances of the services.
 
 [Previous](06_processes.md) - [Next](08_concurrency.md)
