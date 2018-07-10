@@ -1,6 +1,6 @@
 # 11 - Logs
 
-Logs need to be handle as a timeseries of textual events
+Logs need to be handled as a timeseries of textual events
 
 The application should not handle or save logs locally but must write them in stdout / stderr.
 
