@@ -2,5 +2,6 @@
 project.lock.json
 bin/
 obj/
-comments
+comments.md
 ~
+.DS_Store
