@@ -1,23 +1,62 @@
-# 12 Factor Application Using Docker 
+# 12 Factor Application Using Docker
 
-The 12 factor methodology is the result of observations of applications deployed as services in the cloud. As the name states, it presents 12 principles that will help application to be cloud ready, horizontally scalable, and portable.
+The 12 factor methodology is the result of observations of applications deployed as services in the cloud. As the name states, it presents 12 principles that will help application to be cloud ready, horizontally scalable, and portable. The methodology includes:
 
-# Organization of this lab
+* Automating setup using declarative formats to reduce time and cost for new developers
+* Is portable across execution environments
+* Built for the cloud
+* Bring development and production closer together to enable continuous deployment
+* Easily scales with changes to development, architecture or environment.
+* Apps can be written in any programming language and use backing services such a databases, queues, and memory caches.
+
+The 12 factor methodology enables building Software as a Service applications that are scalable and well structured.
+<!--
+## Microservices Architecture
+
+Twelve factor applications fall under the microservices architecture pattern. Microservices are described as architectural style characterized by several features. These features include:
+
+* Services bounded by context
+* Independent services
+* Infrastructure Automation / DevOps
+* Choreography vs orchestration
+* Decentralized data management
+
+### Service boundaries
+
+### Independent services
+
+### Decentralized data management
+
+### Choreography, smart endpoints and dumb pipes
+
+### Infrastructure automation or DevOps
+-->
+## Organization of this lab
 
 In this lab, we will use the voting application to follow each one of the 12 factors and see how this can leverage our application. At the same time, we will see that Docker is a really great fit for several of those factors.
 
-# Let's get started !
+## The Voting Application
+
+This tutorial uses the voting application which records and displays votes between two different options. It is polyglot microservices application consisting of:
+
+* Python webapp which lets you vote between two options
+* Redis queue which collects new votes
+* .NET or Java worker which consumes votes and stores them in
+* Postgres database backed by a Docker volume
+* Node.js webapp which shows the results of the voting in real time
+
+## Let's get started !
 
 
 [1 - Codebase](01_codebase.md)
 
 [2 - Dependencies](02_dependencies.md)
 
-[3 - Configuration](03_configuration.md)
+[3 - Config](03_config.md)
 
-[4 - External services](04_external_services.md)
+[4 - Backing  services](04_backing_services.md)
 
-[5 - Build / Ship / Run](05_build_ship_run.md)
+[5 - Build / Release / Run](05_build_release_run.md)
 
 [6 - Processes](06_processes.md)
 

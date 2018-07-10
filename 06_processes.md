@@ -35,7 +35,7 @@ Redis is included in the Docker compose file
     container_name: redis
     ports: ["6379"]
     networks:
-      - back-tie
+      - back-tier
 ```
 
 [Previous](05_build_ship_run.md) - [Next](07_port_binding.md)

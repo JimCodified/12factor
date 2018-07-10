@@ -10,8 +10,10 @@ This factor shows an orientation toward continuous deployment, where development
 
 ## What does that mean for our application ?
 
-The docker-compose file we built so far can be ran on your local machine or on any Docker Host such as Docker Enterprise Edition. Docker really shines at this level as it handles everything for us.
+The docker-compose file we built so far can be ran on your local machine or on any Docker host such as Docker Enterprise Edition. Developers can configure and application using a Docker Stack file or Kubernetes manifests. These same configuration files can be passed on to testing or production as the basis for a deployed application configuration. Common elements such as environmental variables,networks, volumes and secrets can be kept intact, while deployment configuration such as scaling, shutdown and startup, and runtime configurations can be changed according to need. The time needed to go from dev to production is significantly shortened.
 
-The exact same application can run on each environment.
+The exact same application can run on either a development or production environment. Compare the [Docker Compose file](./example-voting-app/docker-compose.yml) used in development with the [Docker Stack file](./example-voting-app/docker-stack.yml) used in production.
+
+
 
 [Previous](09_disposability.md) - [Next](11_logs.md)
