@@ -10,27 +10,7 @@ The 12 factor methodology is the result of observations of applications deployed
 * Apps can be written in any programming language and use backing services such a databases, queues, and memory caches.
 
 The 12 factor methodology enables building Software as a Service applications that are scalable and well structured.
-<!--
-## Microservices Architecture
 
-Twelve factor applications fall under the microservices architecture pattern. Microservices are described as architectural style characterized by several features. These features include:
-
-* Services bounded by context
-* Independent services
-* Infrastructure Automation / DevOps
-* Choreography vs orchestration
-* Decentralized data management
-
-### Service boundaries
-
-### Independent services
-
-### Decentralized data management
-
-### Choreography, smart endpoints and dumb pipes
-
-### Infrastructure automation or DevOps
--->
 ## Organization of this lab
 
 In this lab, we will use the voting application to follow each one of the 12 factors and see how this can leverage our application. At the same time, we will see that Docker is a really great fit for several of those factors.
@@ -47,6 +27,7 @@ This tutorial uses the voting application which records and displays votes betwe
 
 ## Let's get started !
 
+[0 - Microservices](00_microservices.md)
 
 [1 - Codebase](01_codebase.md)
 
