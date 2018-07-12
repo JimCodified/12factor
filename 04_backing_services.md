@@ -33,4 +33,4 @@ Both of these services are not part of the application code. Instead they are pr
 ```
 
 
-[Previous](03_configuration.md) - [Next](05_build_ship_run.md)
+[Previous](03_config.md) - [Next](05_build_release_run.md)

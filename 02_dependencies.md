@@ -131,4 +131,4 @@ The results service is written in node.js, requirements are declared in [package
 
 As you can see, each application uses a language specific format but they all perform the same function.
 
-[Previous](01_codebase.md) - [Next](03_configuration.md)
+[Previous](01_codebase.md) - [Next](03_config.md)

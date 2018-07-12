@@ -115,4 +115,4 @@ The run phase can be done manually with Compose CLI or through an orchestrator s
 
 The Compose CLI can run the application using `docker-compose up -d`
 
-[Previous](04_external_services.md) - [Next](06_processes.md)
+[Previous](04_backing_services.md) - [Next](06_processes.md)

@@ -38,4 +38,4 @@ Redis is included in the Docker compose file
       - back-tier
 ```
 
-[Previous](05_build_ship_run.md) - [Next](07_port_binding.md)
+[Previous](05_build_release_run.md) - [Next](07_port_binding.md)
